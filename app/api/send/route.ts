@@ -15,15 +15,21 @@ export async function POST(req: any) {
     console.log(response.emailToSend);
     
   try {
-    const result = await resend.emails.send({
-      from: 'lavdapav@resend.dev',
-      to: response.emailToSend,
-      subject: response?.userName+" shared file with you",
-      react: EmailTemplate({ response }),
-    })
+    if (response && response.emailToSend) {
+      console.log(response.emailToSend);
 
-    return NextResponse.json({ message: "email sent successfully" });
-  } catch (error) {
+      const result = await resend.emails.send({
+          from: 'lavdapav@resend.dev',
+          to: response.emailToSend,
+          subject: response?.userName + " shared file with you",
+          react: EmailTemplate({ response }),
+      });
+      console.log("result is:",result);
+      
+      return NextResponse.json({ message: "email sent successfully" });
+  } else {
+      throw new Error("Invalid or missing 'emailToSend' property in the request body");
+  }} catch (error) {
     return NextResponse.json({ error:error.message+"dikkat hai re bhai" });
   }
 }

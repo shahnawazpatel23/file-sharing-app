@@ -49,24 +49,30 @@ const Upload = () => {
     console.log("saveinfo mai ghus gye");
     const docId = generateRandomString().toString();
     
-    await setDoc(doc(db, "files", docId), {
-      fileName:file.name,
-      fileSize:file.size,
-      fileType:file.type,
-      fileUrl:fileUrl,
-      userEmail:user?.primaryEmailAddress.toString(),
-      userName:user?.fullName.toString(),
-      password:'',
-      id:docId,
-      shortUrl:process.env.NEXT_PUBLIC_BASE_URL+'/f/'+docId
-    }).then((res)=>{console.log("saveinfo successful",res)}).catch((err)=>{console.log("errorr aagya re",err);})
-    setFiledocId(docId); 
+    try {
+      await setDoc(doc(db, "files", docId), {
+        fileName:file.name,
+        fileSize:file.size,
+        fileType:file.type,
+        fileUrl:fileUrl,
+        userEmail:user?.primaryEmailAddress.toString(),
+        userName:user?.fullName.toString(),
+        password:'',
+        id:docId,
+        shortUrl:process.env.NEXT_PUBLIC_BASE_URL+'f/'+docId
+      })
+      setFiledocId(docId);
+      console.log("file saved successfully");
+      router.push('/file-preview/' + docId);
+    } catch (error) {
+      console.log("error while saveingo()",error);
+    } 
   }
   
   const handleuploadcomplete =()=>{
-    setProgress(0);
-    console.log("filedocID is ",filedocId)
-    router.push('/file-preview/'+filedocId)
+    // setProgress(0);
+    // console.log("filedocID is ",filedocId)
+    // router.push('/file-preview/'+filedocId)
   }
   return (
     progress==100?(<UploadComplete handleuploadcomplete={handleuploadcomplete}/>):(<div className=" p-5 px-8 md:px-28">
