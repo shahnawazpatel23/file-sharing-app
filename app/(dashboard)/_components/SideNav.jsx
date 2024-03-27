@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-const SideNav = () => {
+const SideNav = ({setClick}) => {
     const router = useRouter()
     const menuList = [
         {
@@ -25,6 +25,7 @@ const SideNav = () => {
     const handleItemClick = (path, index) => {
         router.push(path); 
         setActiveidx(index); 
+        setClick(prev=>!prev);
     };
 
   return (

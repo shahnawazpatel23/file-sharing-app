@@ -20,7 +20,7 @@ const layout = ({ children }) => {
        
       
       <div className={` md:flex h-full md:w-64  flex-col fixed inset-y-0 z-50  duration-600 ${click?'block':'hidden'}  `}>
-        <SideNav />
+        <SideNav setClick={setClick} />
       </div> 
       <div className={` ${click?'ml-64':''} `}>        
         <MobileNav handleOnclick={handleOnclick} />
