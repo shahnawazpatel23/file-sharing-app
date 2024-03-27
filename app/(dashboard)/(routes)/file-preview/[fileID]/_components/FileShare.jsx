@@ -1,6 +1,6 @@
 "use client"
 
-import {SendEmail} from '../../../../../../app/utils/GlobalApi'
+import SendEmail from '../../../../../../app/utils/GlobalApi'
 import { useUser } from '@clerk/nextjs'
 import { Copy } from 'lucide-react'
 import React, { useState } from 'react'

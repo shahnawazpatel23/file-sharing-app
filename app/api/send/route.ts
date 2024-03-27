@@ -9,7 +9,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 
 
-export async function POST(req: { json: () => any; }) {
+export async function POST(req: any) {
     const response = await req.json();
     console.log("ye hai response",response);
     console.log(response.emailToSend);
@@ -17,7 +17,7 @@ export async function POST(req: { json: () => any; }) {
   try {
     const result = await resend.emails.send({
       from: 'lavdapav@resend.dev',
-      to: [response.emailToSend],
+      to: response.emailToSend,
       subject: response?.userName+" shared file with you",
       react: EmailTemplate({ response }),
     })

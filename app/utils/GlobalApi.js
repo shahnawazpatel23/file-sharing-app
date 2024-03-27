@@ -1,5 +1,5 @@
 import axios from "axios";
 
-const SendEmail = (result)=>axios.post('/api/send',result);
+const SendEmail = (data)=>axios.post('/api/send',data);
 
-export  {SendEmail};
+export  default SendEmail;
