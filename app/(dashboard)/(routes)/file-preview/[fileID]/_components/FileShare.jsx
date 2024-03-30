@@ -20,6 +20,7 @@ const FileShare = ({file,onPasswordSave}) => {
     e.preventDefault()
     setPassword(e.target.value)
     console.log("Password saved");
+    document.getElementById('button').innertext = "Saved"
   }
  
   const {user} = useUser()

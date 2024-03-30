@@ -44,6 +44,7 @@ const Upload = () => {
   };
   
   const [filedocId, setFiledocId] = useState();
+  // const [loading,setLoading]= useState(false);
   const {user} = useUser();
   const saveInfo = async(file,fileUrl) => {
     console.log("saveinfo mai ghus gye");
@@ -70,12 +71,14 @@ const Upload = () => {
   }
   
   const handleuploadcomplete =()=>{
-    // setProgress(0);
-    // console.log("filedocID is ",filedocId)
-    // router.push('/file-preview/'+filedocId)
+    // setLoading(true);
+    
   }
   return (
-    progress==100?(<UploadComplete handleuploadcomplete={handleuploadcomplete}/>):(<div className=" p-5 px-8 md:px-28">
+    
+    progress==100?(<UploadComplete handleuploadcomplete={handleuploadcomplete}/> 
+    
+    ):(<div className=" p-5 px-8 md:px-28">
       <h2 className="text-center text-[20px] m-5 mx-auto">
         Start
         <strong className="text-primary"> Uploading </strong>files and{" "}

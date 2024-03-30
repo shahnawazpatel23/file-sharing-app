@@ -19,7 +19,7 @@ export async function POST(req: any) {
       console.log(response.emailToSend);
 
       const result = await resend.emails.send({
-          from: 'lavdapav@resend.dev',
+          from: 'Sharefree@resend.dev',
           to: response.emailToSend,
           subject: response?.userName + " shared file with you",
           react: EmailTemplate({ response }),
