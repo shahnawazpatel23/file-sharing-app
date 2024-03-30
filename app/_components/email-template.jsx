@@ -1,7 +1,7 @@
 import React from 'react';
 
 const button = {
-  backgroundColor: ' #3b82f6',
+  backgroundColor: '#3b82f6', // Primary blue button color
   borderRadius: 8,
   color: '#FFF',
   fontWeight: 'bold',
@@ -11,25 +11,27 @@ const button = {
 
 export const EmailTemplate = ({ response }) => {
   const { userName, fileName, fileSize, fileType, shortUrl } = response;
-  const filemb = ((fileSize)/1024/1024).toFixed(2);
+  const fileMB = ((fileSize) / 1024 / 1024).toFixed(2); // Convert bytes to MB with 2 decimals
+
   return (
-    <div className="bg-white flex flex-col font-sans rounded-lg shadow-md px-4 py-6">
-      <h2 className="text-xl font-bold">{`${userName} sent you a file`}</h2>
-      <p className="mt-2 text-gray-700">
+    <div className="bg-white shadow-md rounded-lg px-8 py-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl font-bold">{`${userName} sent you a file`}</h2>
+        <div className="flex items-center space-x-2">
+          <p className="text-gray-500 text-sm">{fileMB} MB</p>
+          <p className="text-gray-500 text-sm">{fileType}</p>
+        </div>
+      </div>
+      <hr className="my-4 border-gray-200" />
+      <p className="text-gray-700 mt-4 mb-6">
         <b>File name:</b> {fileName}
-      </p>
-      <p className="mt-2 text-gray-700">
-        <b>File size:</b> {filemb }MB 
-      </p>
-      <p className="mt-2 text-gray-700">
-        <b>File type:</b> {fileType}
       </p>
       <a
         href={shortUrl}
         style={button}
-        className="block mt-4 w-full text-center self-center p-3"
+        className="block w-full text-center self-center p-3"
       >
-        Click here to see {'>>>'} 
+        Click here to see {'>>>'}
       </a>
     </div>
   );
