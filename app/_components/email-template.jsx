@@ -1,147 +1,36 @@
-import * as React from 'react';
-
-import {
-  Body,
-  Button,
-  Container,
-  Column,
-  Head,
-  Heading,
-  Html,
-  Img,
-  Preview,
-  Row,
-  Section,
-  Text,
-} from "@react-email/components";
-
-
-
-
-
-export const EmailTemplate = ({
-  response,
-}) =>{
-  const handleOnClick = (e) => {
-    e.preventDefault();
-  window.location.href = response.shortUrl; // Redirect to shortUrl when button is clicked
-}
- return (
-  <Html>
-      <Head />
-      <Preview>File sharing App</Preview>
-      <Body style={main}>
-        <Container>
-          
-
-          <Section style={content}>
-            
-
-            <Row style={{ ...boxInfos, paddingBottom: "0" }}>
-              <Column>
-                <Heading
-                  style={{
-                    fontSize: 32,
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  Hi {response.emailToSend.split('@')[0]},
-                </Heading>
-                <Heading
-                  as="h2"
-                  style={{
-                    fontSize: 26,
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  {`${response?.userName} shared a file with you`}
-                </Heading>
-
-                <Text style={paragraph}>
-                  <b>File name:{response.fileName} </b>
-                  
-                </Text>
-                <Text style={{ ...paragraph, marginTop: -5 }}>
-                  <b>FIle Size:{response.fileSize} </b>
-                  
-                  </Text>
-                <Text style={{ ...paragraph, marginTop: -5 }}>
-                  <b>File Type: {response.fileType} </b>
-                </Text>
-                
-              </Column>
-            </Row>
-            <Row style={{ ...boxInfos, paddingTop: "0" }}>
-              <Column style={containerButton} colSpan={2}>
-                <a onClick={()=>handleOnClick()}  style={button}  className='bg-primary rounded-xl'>Click here to see 👀</a>
-              </Column>
-            </Row>
-          </Section>
-
-          
-
-          <Text
-            style={{
-              textAlign: "center",
-              fontSize: 12,
-              color: "rgb(0,0,0, 0.7)",
-            }}
-          >
-            © 2024 | Itawa Kshetra, Dewas, MP
-            INDIA |
-          </Text>
-        </Container>
-      </Body>
-    </Html>
-);
-      }
-
-const main = {
-  backgroundColor: "#fff",
-  fontFamily:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-};
-
-const paragraph = {
-  fontSize: 16,
-};
-
-const logo = {
-  padding: "30px 20px",
-};
-
-const containerButton = {
-  display: "flex",
-  justifyContent: "center",
-  width: "100%",
-};
+import React from 'react';
 
 const button = {
-  backgroundColor: "#e00707",
-  borderRadius: 3,
-  color: "#FFF",
-  fontWeight: "bold",
-  border: "1px solid rgb(0,0,0, 0.1)",
-  cursor: "pointer",
-  padding: "12px 30px",
+  backgroundColor: ' #3b82f6',
+  borderRadius: 8,
+  color: '#FFF',
+  fontWeight: 'bold',
+  padding: '12px 20px',
+  textDecoration: 'none', // Remove underline from anchor tag
 };
 
-const content = {
-  border: "1px solid rgb(0,0,0, 0.1)",
-  borderRadius: "3px",
-  overflow: "hidden",
-};
-
-const image = {
-  maxWidth: "100%",
-};
-
-const boxInfos = {
-  padding: "20px",
-};
-
-const containerImageFooter = {
-  padding: "45px 0 0 0",
+export const EmailTemplate = ({ response }) => {
+  const { userName, fileName, fileSize, fileType, shortUrl } = response;
+  const filemb = ((fileSize)/1024/1024).toFixed(2);
+  return (
+    <div className="bg-white flex flex-col font-sans rounded-lg shadow-md px-4 py-6">
+      <h2 className="text-xl font-bold">{`${userName} sent you a file`}</h2>
+      <p className="mt-2 text-gray-700">
+        <b>File name:</b> {fileName}
+      </p>
+      <p className="mt-2 text-gray-700">
+        <b>File size:</b> {filemb }MB 
+      </p>
+      <p className="mt-2 text-gray-700">
+        <b>File type:</b> {fileType}
+      </p>
+      <a
+        href={shortUrl}
+        style={button}
+        className="block mt-4 w-full text-center self-center p-3"
+      >
+        Click here to see {'>>>'} 
+      </a>
+    </div>
+  );
 };
