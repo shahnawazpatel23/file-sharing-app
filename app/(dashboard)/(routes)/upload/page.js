@@ -64,7 +64,7 @@ const Upload = () => {
       })
       setFiledocId(docId);
       console.log("file saved successfully");
-      router.push('/file-preview/' + docId);
+      router.push(process.env.NEXT_PUBLIC_BASE_URL+'file-preview/' + docId);
     } catch (error) {
       console.log("error while saveingo()",error);
     } 
