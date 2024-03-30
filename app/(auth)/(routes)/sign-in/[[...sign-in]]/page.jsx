@@ -17,36 +17,30 @@ export default function Page() {
       <div className="hidden lg:relative lg:block lg:p-12">
         <Image src='/logo.svg' width={100} height={100}/>
 
-        <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-          Welcome to Share-free {`>>>`}
+        <h2 className="mt-8 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+          Welcome to Share-me {`>>>`}
         </h2>
 
-        <p className="mt-4 leading-relaxed text-white/90">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-          quibusdam aperiam voluptatum.
-        </p>
+        
       </div>
     </section>
 
     <main
-      className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
+      className="flex items-center justify-center bg-blue-50 px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
     >
-      <div className="max-w-xl lg:max-w-3xl">
+      <div className="max-w-xl lg:max-w-3xl -mt-4">
         <div className="relative -mt-16 block lg:hidden">
           
-        <Image src='/logo.svg' width={50} height={50}/>
-          <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-            Welcome to Share-free 🦑
+          <h1 className="  text-2xl text-white font-bold  sm:text-3xl md:text-4xl">
+            Welcome to Share-me {`>>>`}
           </h1>
+        <Image src='/logo.svg' width={100} height={70} className="mt-3"/>
 
-          <p className="mt-4 leading-relaxed text-gray-500 mb-2">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-            quibusdam aperiam voluptatum.
-          </p>
+          
         </div>
-        
+        <div className="flex items-center justify-center mx-auto mt-10">
         <SignIn/>
-        
+        </div>
         
       </div>
     </main>
