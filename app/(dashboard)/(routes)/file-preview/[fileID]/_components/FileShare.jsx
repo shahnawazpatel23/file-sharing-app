@@ -28,17 +28,22 @@ const FileShare = ({file,onPasswordSave}) => {
   const [sending,setSending] = useState(false)
 
   const sendEmail = ()=>{
+    
     const data = {
       emailToSend: email,
       userName: user?.fullName,
       fileName: file.fileName,
       fileSize: file.fileSize,
       fileType: file.fileType,
-      shortUrl: file.shortUrl
+      shortUrl: file.shortUrl,
+      fileUrl:file.fileUrl
+
     }
     console.log(data);
+
     SendEmail(data).then((resp)=>{
-      console.log("resopnse of sending email",resp);
+      // console.log("resopnse of sending email",resp);
+      console.log("file in fileshare is ",file);
     })
     setSending(true)
     setTimeout(()=>setSending(false),1000)

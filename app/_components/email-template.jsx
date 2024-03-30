@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 import {
   Body,
   Button,
@@ -17,9 +16,17 @@ import {
 } from "@react-email/components";
 
 
+
+
+
 export const EmailTemplate = ({
   response,
-}) => (
+}) =>{
+  const handleOnClick = (e) => {
+    e.preventDefault();
+  window.location.href = response.shortUrl; // Redirect to shortUrl when button is clicked
+}
+ return (
   <Html>
       <Head />
       <Preview>File sharing App</Preview>
@@ -68,7 +75,7 @@ export const EmailTemplate = ({
             </Row>
             <Row style={{ ...boxInfos, paddingTop: "0" }}>
               <Column style={containerButton} colSpan={2}>
-                <Button href={response?.shortUrl} style={button}  className='bg-primary rounded-xl'>Click here to see 👀</Button>
+                <a onClick={()=>handleOnClick()}  style={button}  className='bg-primary rounded-xl'>Click here to see 👀</a>
               </Column>
             </Row>
           </Section>
@@ -89,6 +96,7 @@ export const EmailTemplate = ({
       </Body>
     </Html>
 );
+      }
 
 const main = {
   backgroundColor: "#fff",
