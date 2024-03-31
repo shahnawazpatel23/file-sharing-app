@@ -12,7 +12,7 @@ import FileShare from "./_components/FileShare";
 const FilePreview = ({params}) => {
     useEffect(() =>{
         console.log("file id is ",params.fileID);
-        params.fileID ? getFileInfo():null ;
+        params.fileID && getFileInfo();
     },[])
     const db = getFirestore(app);
     const [file,setFile]= useState();
