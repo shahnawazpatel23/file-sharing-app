@@ -1,16 +1,17 @@
 import React from 'react';
 
 const button = {
-  backgroundColor: '#3b82f6', // Primary blue button color
+  backgroundColor: '#3b82f6', 
   borderRadius: 8,
   color: '#FFF',
   fontWeight: 'bold',
   padding: '12px 20px',
-  textDecoration: 'none', // Remove underline from anchor tag
+  textDecoration: 'none',
 };
 
 export const EmailTemplate = ({ response }) => {
   const { userName, fileName, fileSize, fileType, shortUrl } = response;
+  console.log("response in email template",response)
   const fileMB = ((fileSize) / 1024 / 1024).toFixed(2); // Convert bytes to MB with 2 decimals
 
   return (

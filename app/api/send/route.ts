@@ -6,6 +6,7 @@ import { Resend } from 'resend';
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+// const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 
 
@@ -16,7 +17,7 @@ export async function POST(req: any) {
     
   try {
     if (response && response.emailToSend) {
-      console.log(response.emailToSend);
+      console.log(response.shortUrl);
 
       const result = await resend.emails.send({
           from: 'ShareMe@resend.dev',

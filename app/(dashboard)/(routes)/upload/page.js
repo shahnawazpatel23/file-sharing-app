@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 
 
 const Upload = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
   const router = useRouter()
   const [progress, setProgress] = useState();
   const storage = getStorage(app);
@@ -46,9 +47,10 @@ const Upload = () => {
   const [filedocId, setFiledocId] = useState();
   // const [loading,setLoading]= useState(false);
   const {user} = useUser();
+  
+  const docId = generateRandomString().toString();
   const saveInfo = async(file,fileUrl) => {
     console.log("saveinfo mai ghus gye");
-    const docId = generateRandomString().toString();
     
     try {
       await setDoc(doc(db, "files", docId), {
@@ -60,11 +62,10 @@ const Upload = () => {
         userName:user?.fullName.toString(),
         password:'',
         id:docId,
-        shortUrl:process.env.NEXT_PUBLIC_BASE_URL+'f/'+docId
-      })
-      setFiledocId(docId);
+        shortUrl: 'https://file-sharing-app-lyart-gamma.vercel.app/f/'+docId
+      }).then(()=>setFiledocId(docId))
+      ;
       console.log("file saved successfully");
-      router.push(process.env.NEXT_PUBLIC_BASE_URL+'file-preview/' + docId);
     } catch (error) {
       console.log("error while saveingo()",error);
     } 
@@ -72,24 +73,18 @@ const Upload = () => {
   
   const handleuploadcomplete =()=>{
     // setLoading(true);
+    router.push(baseUrl+'file-preview/' + docId);
     
   }
   return (
     
-    progress==100?(<UploadComplete handleuploadcomplete={handleuploadcomplete}/> 
     
-    ):(<div className=" p-5 px-8 md:px-28">
-      <h2 className="text-center text-[20px] m-5 mx-auto">
-        Start
-        <strong className="text-primary"> Uploading </strong>files and{" "}
-        <strong className="text-primary"> Share </strong> it
-      </h2>
-      
-      {progress==100 ?(<div className="flex justify-center items-center m-150"><UploadComplete/></div> ) :(<UploadForm
+      <div>
+      {progress==100 ?(<div className="flex justify-center items-center m-150"><UploadComplete handleuploadcomplete={handleuploadcomplete}/></div> ) :(<UploadForm
         handleUpload={(file) => handleUpload(file)}
         progress={progress}
       />)}
-    </div>)
+    </div>
   );
 };
 
